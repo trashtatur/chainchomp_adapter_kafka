@@ -1,0 +1,1 @@
+# chainchomp_adapter_kafka
