@@ -16,7 +16,8 @@ class Subscriber:
             self.on_message(message)
 
     def stop_subscriber(self):
-        pass
+        self.is_running = False
+        self.kafka_consumer.close()
 
     def on_message(self, data):
         self.incoming_message_handler.handle_incoming_message(data)

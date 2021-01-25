@@ -1,3 +1,8 @@
+from chainchomplib import LoggerInterface
+from chainchomplib.exceptions.Exceptions import NotValidException
+from chainchomplib.verify.SchemaVerifier import SchemaVerifier
+from chainchomplib.verify.schema.MessageSchema import MessageSchema
+
 from chainchomp_adapter_kafka.socket.SocketEmitter import SocketEmitter
 
 
@@ -7,4 +12,13 @@ class IncomingMessageHandler:
         self.socket_emitter = socket_emitter
 
     def handle_incoming_message(self, data):
-        pass
+        try:
+            SchemaVerifier.verify(data, MessageSchema())
+        except NotValidException as exception:
+            LoggerInterface.error(
+                f'A message was not properly formatted when arriving on the rabbitmq adapter. '
+                f'it will be ignored. Exception: {exception}'
+            )
+            return
+        else:
+            self.socket_emitter.emit_to_chainchomp_core(data)
