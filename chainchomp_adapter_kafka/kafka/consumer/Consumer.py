@@ -1,5 +1,5 @@
-from chainchomp_adapter_kafka.kafka.Consumer import KafkaConsumerFactory
-from chainchomp_adapter_kafka.kafka.Consumer.Subscriber import Subscriber
+from chainchomp_adapter_kafka.kafka.consumer import KafkaConsumerFactory
+from chainchomp_adapter_kafka.kafka.consumer.Subscriber import Subscriber
 from chainchomp_adapter_kafka.messaging.IncomingMessageHandler import IncomingMessageHandler
 from chainchomp_adapter_kafka.socket.SocketEmitter import SocketEmitter
 

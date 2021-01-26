@@ -1,7 +1,7 @@
 from chainchomplib.adapterlayer.Message import Message
 
-from chainchomp_adapter_kafka.kafka.Producer.Producer import Producer
-from chainchomp_adapter_kafka.kafka.Producer.Publisher import Publisher
+from chainchomp_adapter_kafka.kafka.producer.Producer import Producer
+from chainchomp_adapter_kafka.kafka.producer.Publisher import Publisher
 
 
 class OutgoingMessageHandler:
