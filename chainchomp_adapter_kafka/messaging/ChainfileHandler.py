@@ -11,7 +11,7 @@ class ChainfileHandler:
         for previous_link in chainfile_model.previous_links:
             name_and_ip = previous_link.split('::')
             subscriber = consumer.create_new_subscriber(name_and_ip[0], chainfile_model.chainlink_name)
-            subscriber.start_subscriber()
+            subscriber.start()
 
     @staticmethod
     def handle_incoming_remote_chainfile(remote_chainfile_dto: RemoteChainfileDTO, consumer: Consumer):
@@ -55,4 +55,4 @@ class ChainfileHandler:
         :return:
         """
         subscriber = consumer.create_new_subscriber(remote_link_address, name_of_called_link)
-        subscriber.start_subscriber()
+        subscriber.start()

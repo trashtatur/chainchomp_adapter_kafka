@@ -12,7 +12,7 @@ from chainchomp_adapter_kafka.kafka.consumer.Consumer import Consumer
 from chainchomp_adapter_kafka.kafka.producer.Producer import Producer
 from chainchomp_adapter_kafka.socket.SocketEmitter import SocketEmitter
 
-sio = socketio.AsyncClient()
+sio = socketio.AsyncClient(engineio_logger=True)
 URL = 'http://localhost:4410'
 socket_emitter = SocketEmitter(sio)
 consumer = Consumer(socket_emitter)
@@ -21,6 +21,7 @@ producer = Producer()
 
 @sio.on(SocketEvents.EMIT_TO_ADAPTER)
 async def on_receive_message(data):
+    print(data)
     message = MessageDeserializer.deserialize(data)
     print(message.get_serialized())
     if message is not None:

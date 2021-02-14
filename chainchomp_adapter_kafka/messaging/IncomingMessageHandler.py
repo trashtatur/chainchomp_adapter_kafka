@@ -12,6 +12,7 @@ class IncomingMessageHandler:
         self.socket_emitter = socket_emitter
 
     def handle_incoming_message(self, data):
+        print('message arrived')
         try:
             SchemaVerifier.verify(data, MessageSchema())
         except NotValidException as exception:
@@ -21,4 +22,5 @@ class IncomingMessageHandler:
             )
             return
         else:
+            print('message valid')
             self.socket_emitter.emit_to_chainchomp_core(data)
